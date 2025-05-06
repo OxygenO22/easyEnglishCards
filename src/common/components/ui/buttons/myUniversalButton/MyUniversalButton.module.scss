@@ -1,0 +1,22 @@
+.button {
+  font-size: 1em;
+  font-weight: 500;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  background: #f5c339;
+  padding: 10px 15px;
+  margin-right: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(59, 59, 59, 0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: #fff;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

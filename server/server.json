@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alex",
+      "age": 36,
+      "isAdmin": true
+    },
+    {
+      "id": "2",
+      "name": "Nic",
+      "age": 27,
+      "isAdmin": false
+    },
+    {
+      "id": "3",
+      "name": "Oleg",
+      "age": 33,
+      "isAdmin": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "2",
+      "englishWord": "post",
+      "russianhWord": "почта",
+      "rating": 3
+    },
+    {
+      "id": "3",
+      "englishWord": "event",
+      "russianhWord": "событие",
+      "rating": 4
+    }
+  ]
+}
