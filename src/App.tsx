@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import './App.css'
 import { useAppDispatch, useAppSelector } from './common/hooks/hooks';
-import { deleteCard, getCards } from './common/features/cards/cardsSlice';
+import { deleteCard, getCards, updateCard } from './common/features/cards/cardsSlice';
 import { EditableSpan } from './common/components/ui/editableSpan/EditableSpan';
 import { MyForm } from './common/components/ui/form/MyForm';
+import { cardsApi } from './common/api/cards-api';
 
 function App() {
   const cards = useAppSelector(state => state.cards.cards)
+  const word = useAppSelector(state => state.cards.cards)
   const dispatch = useAppDispatch();
 
    useEffect(() => {
@@ -36,9 +38,9 @@ function App() {
               {" - "}
               <EditableSpan
                 value={item.russianhWord}
-                onChange={onTranslationTitleChangeHandler}
+                onChange={() => dispatch(updateCard({id: item.id, word: item.russianhWord}))}
               />{' / '}
-              <span onClick={() => dispatch(deleteCard(item.id))}>X</span>
+              <span style={{color: 'red', cursor: 'pointer'}} onClick={() => dispatch(deleteCard(item.id))}>X</span>
             </p>
           </div>
         ))}

@@ -56,18 +56,20 @@ export const deleteCard = createAsyncThunk<string, string, {rejectValue: string}
   }
 )
 
-//work here
+//work here/ it doesn't work
 
-export const updateCard = createAsyncThunk<string, string, {rejectValue: string}>(
-  'cards/deleteCard',
-  async function(id, {rejectWithValue}) {
-    const response = await cardsApi.deleteCard(id);
+export const updateCard = createAsyncThunk<string, {id: string, word: string}, {rejectValue: string}>(
+  'cards/updateCard',
+  async function(data, {rejectWithValue}) {
+
+    console.log(data.id, data.word);
+    const response = await cardsApi.updateCard(data.id, data.word);
 
     if (response.statusText !== 'OK') {
-      return rejectWithValue('Cant delete task. Server Error!')
+      return rejectWithValue('Cant update the task. Server Error!')
     }
-
-    return id;
+    
+    return data.id;
   }
 )
 
@@ -99,6 +101,17 @@ const cardsSlice = createSlice({
       })
       .addCase(deleteCard.fulfilled, (state, action) => {
         state.cards = state.cards.filter(card => card.id !== action.payload)
+      })
+      .addCase(updateCard.fulfilled, (state, action) => {
+        // const {id, word} = action.meta.arg
+        // const card = state.cards.find((card) => card.id === id)
+        // if (card) {
+        //   card.russianhWord = word
+        // }
+      ////////////////////////////
+        // const {id, word} = action.meta.arg
+       
+        // state.cards = state.cards.map(card => card.id === id ? {...card, englishWord: word} : card)
       })
   },
 })

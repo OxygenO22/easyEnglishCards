@@ -15,8 +15,8 @@ export const cardsApi = {
   deleteCard(cardId: string) {
       return instance.delete<ResponseTypeAPI>(`/cards/${cardId}`)
   },
-  updateCard(cardId: string, englishWord: string, russianhWord: string) {
-      return instance.put<ResponseTypeAPI>(`/cards/${cardId}`, {englishWord, russianhWord})
+  updateCard(cardId: string, word: string) {
+      return instance.put<ResponseTypeAPI>(`/cards/${cardId}`, word)
   },
 }
 

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import s from './MyForm.module.scss'
 import { useAppDispatch } from '../../../hooks/hooks';
 import { addNewCard, getCards } from '../../../features/cards/cardsSlice';
+import { formErrors } from '../../configs/configs';
 
 type DataType = {
   englishWord: string;
@@ -32,29 +33,33 @@ export const MyForm = () => {
         <p>English word</p>
         <input
           {...register("englishWord", {
-            required: "Обязательно заполнить",
+            required: formErrors.required,
             pattern: {
               value: /^[A-Za-z]+$/,
-              message: "Только латинские",
+              message: formErrors.onlyEnglish,
             },
           })}
         />
       </label>
-      {errors.englishWord && <span>{errors.englishWord.message}</span>}
+      {errors.englishWord && (
+        <span className={s.form__error}>{errors.englishWord.message}</span>
+      )}
 
       <label>
         <p>Russian word</p>
         <input
           {...register("russianhWord", {
-            required: "Обязательно заполнить",
+            required: formErrors.required,
             pattern: {
               value: /[а-яА-ЯёЁa]/,
-              message: "Только русские",
+              message: formErrors.onlyRussian,
             },
           })}
         />
       </label>
-      {errors.russianhWord && <span>{errors.russianhWord.message}</span>}
+      {errors.russianhWord && (
+        <span className={s.form__error}>{errors.russianhWord.message}</span>
+      )}
 
       <input type="submit" disabled={!isValid} />
     </form>
