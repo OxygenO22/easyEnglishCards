@@ -4,3 +4,5 @@ export type CardsType = {
   russianhWord: string, 
   rating: number
 }
+
+export type AppMode = 'Welcome' | 'Learning' | 'Add' | 'Cards'

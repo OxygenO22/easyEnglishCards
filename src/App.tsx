@@ -1,51 +1,62 @@
 import { useEffect } from 'react';
-import './App.css'
+import "./App.scss";
 import { useAppDispatch, useAppSelector } from './common/hooks/hooks';
-import { deleteCard, getCards, updateCard } from './common/features/cards/cardsSlice';
-import { EditableSpan } from './common/components/ui/editableSpan/EditableSpan';
+import { getCards } from './common/features/cards/cardsSlice';
 import { MyForm } from './common/components/ui/form/MyForm';
-import { cardsApi } from './common/api/cards-api';
+import { Card } from './common/components/ui/card/Card';
+import { AppModeButtons } from './common/components/ui/appModeButtons/AppModeButtons';
+import { MyUniversalButton } from './common/components/ui/buttons/myUniversalButton/MyUniversalButton';
+import { PopUp } from './common/components/ui/popUp/PopUp';
+import { changePopUpMode } from './common/features/popUpMode/popUpModeSlice';
 
 function App() {
-  const cards = useAppSelector(state => state.cards.cards)
-  const word = useAppSelector(state => state.cards.cards)
+  const cards = useAppSelector(state => state.cards.cards);
+  const appMode = useAppSelector(state => state.appMode.appMode)
+  const popUpMode = useAppSelector(state => state.popUpMode.isOpen)
   const dispatch = useAppDispatch();
 
    useEffect(() => {
      dispatch(getCards());
    }, [dispatch]);
 
-  const onEnglishTitleChangeHandler = ()=> {}
-  const onTranslationTitleChangeHandler = () => {};
-
   
-
   return (
-    <>
-      <h1>Hello</h1>
-      <div>
-        <MyForm />
-      </div>
-      <div>
-        {cards.map((item) => (
-          <div key={item.id}>
-            <p>
-              {" "}
-              <EditableSpan
-                value={item.englishWord}
-                onChange={onEnglishTitleChangeHandler}
-              />{" "}
-              {" - "}
-              <EditableSpan
-                value={item.russianhWord}
-                onChange={() => dispatch(updateCard({id: item.id, word: item.russianhWord}))}
-              />{' / '}
-              <span style={{color: 'red', cursor: 'pointer'}} onClick={() => dispatch(deleteCard(item.id))}>X</span>
-            </p>
+    <div className={"app__wrapper"}>
+      <header className={"header"}>
+        <AppModeButtons />
+      </header>
+      <main className={"main"}>
+        {popUpMode && <PopUp name='PopUp' type={'Neutral'} />}
+        {appMode === "Welcome" && (
+          <div>
+            <h1>Hello!</h1>
+            <h2>This is app in cards for learning English</h2>
+            <MyUniversalButton name={'PopUp'} callBack={() => dispatch(changePopUpMode())} />
           </div>
-        ))}
-      </div>
-    </>
+        )}
+
+        {appMode === "Add" && (
+          <div>
+            <h1>Add new cards</h1>
+            <MyForm />
+          </div>
+        )}
+        {appMode === "Cards" && (
+          <div>
+            <h1>Look all your cards </h1>
+            <Card cards={cards} />
+          </div>
+        )}
+        {appMode === "Learning" && (
+          <div>
+            <h1>Let's check your knolidge</h1>
+          </div>
+        )}
+      </main>
+      <footer className={"footer"}>
+        <p>made by Alexandr Budzko</p>
+      </footer>
+    </div>
   );
 }
 
