@@ -27,21 +27,15 @@
       "rating": 3
     },
     {
-      "id": "3",
-      "englishWord": "event",
-      "russianhWord": "событие",
-      "rating": 4
-    },
-    {
       "id": "772c4750-30c0-11f0-bd08-23187f8561f5",
       "englishWord": "mud",
       "russianhWord": "грязь",
       "rating": 0
     },
     {
-      "id": "8aee6a20-30c0-11f0-bd08-23187f8561f5",
-      "englishWord": "glow",
-      "russianhWord": "сияние",
+      "id": "22b463d0-30fa-11f0-9943-29352e1b232d",
+      "englishWord": "ache",
+      "russianhWord": "боль",
       "rating": 0
     }
   ]

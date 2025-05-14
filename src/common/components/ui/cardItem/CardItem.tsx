@@ -27,13 +27,8 @@ export const CardItem = ({id, englishWord, russianWord, onEnglishChange, onRussi
           />
         </p>
       </div>
-      <div className={s.button}>
-        <span
-          style={{ color: "red" }}
-          onClick={() => dispatch(deleteCard(id))}
-        >
-          X
-        </span>
+      <div className={s.button} onClick={() => dispatch(deleteCard(id))}>
+        <span style={{ color: "red" }}>X</span>
       </div>
     </div>
   );

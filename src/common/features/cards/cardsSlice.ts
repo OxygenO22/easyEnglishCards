@@ -9,6 +9,8 @@ type CardsState = {
   error: string | null
 }
 
+
+
 export const getCards = createAsyncThunk<CardsType[], undefined, {rejectValue: string}>(
   'cards/getCards',
   async function(_, {rejectWithValue}) {
@@ -46,12 +48,11 @@ export const addNewCard = createAsyncThunk<CardsType, {englishWord: string, russ
 export const deleteCard = createAsyncThunk<string, string, {rejectValue: string}>(
   'cards/deleteCard',
   async function(id, {rejectWithValue}) {
-    const response = await cardsApi.deleteCard(id);
-
-    if (response.statusText !== 'OK') {
-      return rejectWithValue('Cant delete task. Server Error!')
-    }
-
+      const response = await cardsApi.deleteCard(id);
+      if (response.statusText !== 'OK') {
+        return rejectWithValue('Cant delete task. Server Error!')
+      }
+    
     return id;
   }
 )

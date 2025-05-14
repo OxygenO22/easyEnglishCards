@@ -26,12 +26,15 @@ function App() {
         <AppModeButtons />
       </header>
       <main className={"main"}>
-        {popUpMode && <PopUp name='PopUp' type={'Neutral'} />}
+        {popUpMode && <PopUp name="PopUp" />}
         {appMode === "Welcome" && (
           <div>
             <h1>Hello!</h1>
             <h2>This is app in cards for learning English</h2>
-            <MyUniversalButton name={'PopUp'} callBack={() => dispatch(changePopUpMode())} />
+            <MyUniversalButton
+              name={"PopUp"}
+              callBack={() => dispatch(changePopUpMode("Neutral"))}
+            />
           </div>
         )}
 
