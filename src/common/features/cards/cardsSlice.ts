@@ -52,7 +52,6 @@ export const deleteCard = createAsyncThunk<string, string, {rejectValue: string}
       if (response.statusText !== 'OK') {
         return rejectWithValue('Cant delete task. Server Error!')
       }
-    
     return id;
   }
 )

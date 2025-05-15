@@ -1,8 +1,9 @@
 import React from 'react'
 import { EditableSpan } from '../editableSpan/EditableSpan'
 import { deleteCard, updateCard } from '../../../features/cards/cardsSlice';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import s from './CardItem.module.scss'
+import { changePopUpMode } from '../../../features/popUpMode/popUpModeSlice';
 
 type Props = {
   id: string;
@@ -13,7 +14,19 @@ type Props = {
 };
 
 export const CardItem = ({id, englishWord, russianWord, onEnglishChange, onRussianChange}: Props) => {
+  const popUpType = useAppSelector(state => state.popUpMode.popUpType)
+  const popUpDecision = useAppSelector(state => state.popUpMode.popUpDecision)
   const dispatch = useAppDispatch();
+
+  const keepSureToDelete = () => {
+    dispatch(changePopUpMode('Delete'))
+    console.log(popUpDecision);
+    if(popUpType === 'Delete') {
+       popUpDecision === 'Yes' && dispatch(deleteCard(id))
+    }
+  }
+
+
   return (
     <div className={s.wrapper}>
       <div className={s.words}>
@@ -27,7 +40,7 @@ export const CardItem = ({id, englishWord, russianWord, onEnglishChange, onRussi
           />
         </p>
       </div>
-      <div className={s.button} onClick={() => dispatch(deleteCard(id))}>
+      <div className={s.button} onClick={() => keepSureToDelete()}>
         <span style={{ color: "red" }}>X</span>
       </div>
     </div>

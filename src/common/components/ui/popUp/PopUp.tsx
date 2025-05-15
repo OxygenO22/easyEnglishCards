@@ -1,7 +1,7 @@
 import React from 'react'
 import { MyUniversalButton } from '../buttons/myUniversalButton/MyUniversalButton';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { changePopUpMode, PopUpType } from '../../../features/popUpMode/popUpModeSlice';
+import {changePopUpMode, makeDecision, PopUpType, } from '../../../features/popUpMode/popUpModeSlice';
 import s from './PopUp.module.scss'
 import { ButtonNames } from '../../../data/appData';
 
@@ -40,37 +40,34 @@ export const PopUp = ({name}: Props) => {
         <div>
           <h1>{name}</h1>
         </div>
-        {type === 'Delete' ? (
-            <div>
-              <MyUniversalButton
-                name={ButtonNames.yes}
-                callBack={() =>
-                  dispatch(
-                    changePopUpMode("Delete")
-                  )
-                }
-              />
-              <MyUniversalButton
-                name={ButtonNames.no}
-                callBack={() =>
-                  dispatch(
-                    changePopUpMode( "Neutral")
-                  )
-                }
-              />
-            </div>
-          ) : (
-            <div>
-              <MyUniversalButton
-                name={ButtonNames.ok}
-                callBack={() =>
-                  dispatch(
-                    changePopUpMode("Neutral")
-                  )
-                }
-              />
-            </div>
-          )}
+        {type === "Delete" ? (
+          <div>
+            <MyUniversalButton
+              name={ButtonNames.yes}
+              callBack={() => {
+                dispatch(makeDecision('Yes'));
+                dispatch(changePopUpMode('Delete'));
+              }}
+            />
+            <MyUniversalButton
+              name={ButtonNames.no}
+              callBack={() => {
+                dispatch(makeDecision('No'));
+                dispatch(changePopUpMode("Neutral"));
+              }}
+            />
+          </div>
+        ) : (
+          <div>
+            <MyUniversalButton
+              name={ButtonNames.ok}
+              callBack={() => {
+                dispatch(makeDecision('Ok'));
+                dispatch(changePopUpMode("Neutral"));
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

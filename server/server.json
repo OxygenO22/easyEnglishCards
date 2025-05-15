@@ -21,20 +21,8 @@
   ],
   "cards": [
     {
-      "id": "2",
-      "englishWord": "post",
-      "russianhWord": "почта",
-      "rating": 3
-    },
-    {
-      "id": "772c4750-30c0-11f0-bd08-23187f8561f5",
-      "englishWord": "mud",
-      "russianhWord": "грязь",
-      "rating": 0
-    },
-    {
-      "id": "22b463d0-30fa-11f0-9943-29352e1b232d",
-      "englishWord": "ache",
+      "id": "13bb5f60-318a-11f0-8ad9-8de759943553",
+      "englishWord": "dsd",
       "russianhWord": "боль",
       "rating": 0
     }
