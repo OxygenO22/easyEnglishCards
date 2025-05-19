@@ -17,7 +17,7 @@ function App() {
 
    useEffect(() => {
      dispatch(getCards());
-   }, [dispatch]);
+   }, [dispatch, appMode === "Cards"]);
 
   
   return (

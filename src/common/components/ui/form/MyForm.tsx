@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import s from './MyForm.module.scss'
 import { useAppDispatch } from '../../../hooks/hooks';
 import { addNewCard, getCards } from '../../../features/cards/cardsSlice';
 import { formErrors } from '../../configs/configs';
+import { changeAppMode } from '../../../features/appMode/appModeSlice';
 
 type DataType = {
   englishWord: string;
@@ -11,6 +12,8 @@ type DataType = {
 };
 export const MyForm = () => {
   const dispatch = useAppDispatch()
+  
+  
 
   const {
     register,
@@ -22,7 +25,7 @@ export const MyForm = () => {
   });
   const onSubmit = (data: any) => {
     dispatch(addNewCard(data));
-    dispatch(getCards());
+    
     console.log(data);
     reset();
   };

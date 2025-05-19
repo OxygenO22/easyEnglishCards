@@ -3,7 +3,7 @@ import { EditableSpan } from '../editableSpan/EditableSpan'
 import { deleteCard, updateCard } from '../../../features/cards/cardsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import s from './CardItem.module.scss'
-import { changePopUpMode } from '../../../features/popUpMode/popUpModeSlice';
+import { changePopUpMode, makeDecision } from '../../../features/popUpMode/popUpModeSlice';
 
 type Props = {
   id: string;
@@ -20,9 +20,13 @@ export const CardItem = ({id, englishWord, russianWord, onEnglishChange, onRussi
 
   const keepSureToDelete = () => {
     dispatch(changePopUpMode('Delete'))
-    console.log(popUpDecision);
+    
+    
     if(popUpType === 'Delete') {
-       popUpDecision === 'Yes' && dispatch(deleteCard(id))
+      dispatch(makeDecision('Yes'))
+    
+      console.log(popUpDecision);
+       popUpDecision === "Yes" && dispatch(deleteCard(id));
     }
   }
 
